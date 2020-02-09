@@ -1,4 +1,3 @@
-# React with Express Simple
+# Simple React with Express 
 
-### by
 #### Aditya
