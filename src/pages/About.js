@@ -9,10 +9,10 @@ function About(props) {
 
    const  [gambarType,setGambarType] = useState('');
    const  [gambarImage,setGambarImage] = useState('');
-   
+
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchData());     
+        dispatch(fetchData());
     }, [dispatch])
 
     const handleImage = (e) => {
@@ -26,7 +26,6 @@ function About(props) {
 
     const formik = useFormik({
         initialValues: {
-          id:'',
           firstname: '',
           lastname: '',
           username:'',
@@ -35,7 +34,7 @@ function About(props) {
           password:'',
           age:'',
           avatar:''
-          
+
         },
         onSubmit: (values,{ resetForm }) => {
           let formData = new FormData()
@@ -53,13 +52,13 @@ function About(props) {
           //alert(JSON.stringify(values, null, 2));
         },
       });
-      
+
     return (
         <div>
             <h1 className='text-center alert alert-info'>User Lists</h1>
-            <Container> 
+            <Container>
             <Row>
-            <Col md={12}> 
+            <Col md={12}>
             <Table>
                 <thead>
                     <tr>
@@ -89,15 +88,6 @@ function About(props) {
                 <Row>
                     <Col md={12}>
                     <form onSubmit={formik.handleSubmit}>
-                    <label htmlFor="firstName">ID</label>
-                        <input
-                            id="id"
-                            name="id"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.id}
-                            className='form-control'
-                        />
                         <label htmlFor="firstName">First Name</label>
                         <input
                             id="firstname"
@@ -168,7 +158,7 @@ function About(props) {
                             type="file"
                             onChange={event=> {
                                 console.log(event.target.files,"files");
-                                
+
                                 formik.setFieldValue(
                                     "avatar",
                                     event.currentTarget.files[0]
@@ -176,7 +166,7 @@ function About(props) {
                                 handleImage(event);
                             }}
                             className='form-control'
-                        /> 
+                        />
                         {gambarType !== "" && (
                             <img src={gambarImage} alt="avatar" style={{width:'100px'}} />
                         )}
@@ -185,7 +175,7 @@ function About(props) {
                     </Col>
                 </Row>
                 </Container>
-            
+
         </div>
     )
 }

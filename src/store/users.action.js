@@ -18,13 +18,13 @@ export const addData = data => {
 }
 
 export const fetchData = () => dispatch => {
-    return axios.get('http://localhost:3003/users').then(res => {
+    return axios.get('https://express-mongy.herokuapp.com/users').then(res => {
         dispatch(showData(res.data));
     })
 }
 
 export const PostData = (data) => dispatch => {
-    return axios.post('http://localhost:3003/users',data).then(res => {
+    return axios.post('https://express-mongy.herokuapp.com/users',data).then(res => {
         
     })
 }
