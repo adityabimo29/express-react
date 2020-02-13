@@ -56,6 +56,5 @@ export const fetchData = () => dispatch => {
 
 export const PostData = (data) => dispatch => {
     return axios.post('http://localhost:3003/users',data).then(res => {
-        
     })
 }
