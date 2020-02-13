@@ -1,32 +1,40 @@
 import React from 'react';
-import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Switch , Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Navbaria from './components/Navbaria';
 import Home from './pages/Home';
 import About from './pages/About';
-import Formy from './pages/Form';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
-function App() {
+function App(prop) {
+  const isLogin = localStorage.getItem('token');
   return (
     <Router>
-
-        <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/about'>About</Link></li>
-          <li><Link to='/form'>Form</Link></li>
-        </ul>
-        
+        <Navbaria />
         <Switch>
            <Route exact path='/'>
              <Home />
            </Route>
+           
            <Route path='/about'>
-             <About />
+           {(isLogin) ? <About /> : <Redirect to='/' />}
            </Route>
-           <Route path='/form'>
-             <Formy />
+           <Route path='/login'>
+             <Login />
+           </Route>
+           <Route path='/register'>
+             <Register />
            </Route>
         </Switch>
     </Router>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return{
+    isLogin:state.users.isLogin
+  }
+}
+
+export default connect(mapStateToProps)(App);
